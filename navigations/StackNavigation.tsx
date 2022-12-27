@@ -15,9 +15,9 @@ export default function StackNavigation() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="ScreenWelcome" component={ScreenWelcome} />
+      {/* <Stack.Screen name="ScreenWelcome" component={ScreenWelcome} />
       <Stack.Screen name="ScreenSignIn" component={ScreenSignIn} />
-      <Stack.Screen name="ScreenLogIn" component={ScreenLogIn} />
+      <Stack.Screen name="ScreenLogIn" component={ScreenLogIn} /> */}
       <Stack.Screen name="TabsNavigation" component={TabsNavigation} />
     </Stack.Navigator>
   );

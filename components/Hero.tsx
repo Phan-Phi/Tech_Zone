@@ -42,12 +42,17 @@ export default function Hero() {
   return (
     <View style={styles.container}>
       <Carousel
+        layout="default"
         data={carouselItems}
         renderItem={(el: ITEM, idx: number) => {
           return (
             <View
               key={idx}
-              style={{ backgroundColor: "black", borderRadius: 15 }}
+              style={{
+                backgroundColor: "black",
+                borderRadius: 15,
+                paddingHorizontal: 0,
+              }}
             >
               <View style={styles.flex}>
                 <View style={{ width: "60%" }}>
@@ -62,7 +67,6 @@ export default function Hero() {
                     style={{
                       display: "flex",
                       flexDirection: "row",
-                      justifyContent: "flex-start",
                     }}
                   >
                     <Button
@@ -94,15 +98,24 @@ export default function Hero() {
             </View>
           );
         }}
-        sliderWidth={screenWidth}
+        sliderWidth={500}
         itemWidth={350}
+        containerCustomStyle={{
+          // backgroundColor: "grey",
+          paddingHorizontal: 0,
+          marginHorizontal: 0,
+        }}
       />
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     marginVertical: 15,
+    paddingHorizontal: 20,
+    alignItems: "center",
+    // backgroundColor: "red",
   },
   flex: {
     display: "flex",
