@@ -11,7 +11,7 @@ export default function App() {
       <SafeAreaProvider>
         <SafeAreaView style={styles.SafeAreaView}>
           <StatusBar
-            backgroundColor="black"
+            // backgroundColor="black"
             barStyle="light-content"
             translucent
           />

@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 
 import { Button, Divider, Image, Input, Text } from "@rneui/themed";
 import { Icon } from "@rneui/themed";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function ScreenSignIn({ navigation }) {
   const { navigate, goBack } = navigation;
@@ -35,6 +36,12 @@ export default function ScreenSignIn({ navigation }) {
         />
 
         <Button
+          ViewComponent={LinearGradient}
+          linearGradientProps={{
+            colors: ["#5A5A5A", "#000000"],
+            start: { x: 0, y: 0.5 },
+            end: { x: 1, y: 0.5 },
+          }}
           onPress={() => {
             navigate("TabsNavigation");
           }}

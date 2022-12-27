@@ -7,6 +7,7 @@ import {
 } from "react-native";
 
 import { Button, Divider, Image, Input, Text } from "@rneui/themed";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function ScreenLogIn({ navigation }) {
   const { navigate, goBack } = navigation;
@@ -48,6 +49,12 @@ export default function ScreenLogIn({ navigation }) {
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
 
           <Button
+            ViewComponent={LinearGradient}
+            linearGradientProps={{
+              colors: ["#5A5A5A", "#000000"],
+              start: { x: 0, y: 0.5 },
+              end: { x: 1, y: 0.5 },
+            }}
             onPress={() => {
               navigate("TabsNavigation");
             }}

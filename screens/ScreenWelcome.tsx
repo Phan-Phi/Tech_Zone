@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Button, Text } from "@rneui/themed";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Col, Grid, Row } from "react-native-easy-grid";
 import { Carousel, Pagination } from "react-native-snap-carousel";
 import CarouselCardItem, {
   ITEM_WIDTH,
   SLIDER_WIDTH,
 } from "../components/CarouselCardItem";
+import { LinearGradient } from "expo-linear-gradient";
 
 const data = [
   {
@@ -86,11 +86,18 @@ export default function ScreenWelcome({
 
       <View>
         <Button
+          ViewComponent={LinearGradient}
+          linearGradientProps={{
+            colors: ["#5A5A5A", "#000000"],
+            start: { x: 0, y: 0.5 },
+            end: { x: 1, y: 0.5 },
+          }}
           title="Sign up"
           onPress={() => {
             navigation.navigate("ScreenSignIn");
           }}
         />
+
         <Button
           title="Log in"
           type="outline"

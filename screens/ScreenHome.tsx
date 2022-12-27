@@ -1,4 +1,4 @@
-import { Button, Text } from "@rneui/themed";
+import { Button, Chip, Text } from "@rneui/themed";
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Icon } from "@rneui/themed";
@@ -8,8 +8,7 @@ import Categories from "../components/Categories";
 import Product from "../components/Product";
 import { Carousel } from "react-native-snap-carousel";
 import CarouselCardItem, { SLIDER_WIDTH } from "../components/CarouselCardItem";
-
-import LinearGradient from "react-native-linear-gradient";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function ScreenHome({ navigation }) {
   return (
@@ -84,16 +83,7 @@ export default function ScreenHome({ navigation }) {
           </View>
         </View>
 
-        <Product />
-      </View>
-
-      <View style={styles.container}>
-        <LinearGradient
-          colors={["red", "yellow", "green"]}
-          style={styles.linearGradient}
-        >
-          <Text>Vertical Gradient</Text>
-        </LinearGradient>
+        <Product navigation={navigation} />
       </View>
     </ScrollView>
   );
@@ -102,6 +92,7 @@ export default function ScreenHome({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 15,
+    backgroundColor: "white",
   },
   viewHeader: {
     display: "flex",

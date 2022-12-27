@@ -1,4 +1,5 @@
 import { Button, Image, Text } from "@rneui/themed";
+import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 import { Carousel } from "react-native-snap-carousel";
@@ -46,10 +47,13 @@ export default function Hero() {
         data={carouselItems}
         renderItem={(el: ITEM, idx: number) => {
           return (
-            <View
+            <LinearGradient
+              colors={["#5A5A5A", "#000000"]}
+              start={{ x: 0, y: 0.5 }}
+              end={{ x: 1.8, y: 0.2 }}
               key={idx}
               style={{
-                backgroundColor: "black",
+                // backgroundColor: "black",
                 borderRadius: 15,
                 paddingHorizontal: 0,
               }}
@@ -95,7 +99,7 @@ export default function Hero() {
                   />
                 </View>
               </View>
-            </View>
+            </LinearGradient>
           );
         }}
         sliderWidth={500}

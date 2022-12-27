@@ -1,4 +1,5 @@
 import { AirbnbRating, Button, Icon, Image, Text } from "@rneui/themed";
+import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 import { Carousel } from "react-native-snap-carousel";
@@ -38,7 +39,9 @@ const carouselItems = [
   },
 ];
 
-export default function Product() {
+export default function Product({ navigation }) {
+  const { navigate } = navigation;
+
   return (
     <View style={styles.container}>
       <Carousel
@@ -72,6 +75,15 @@ export default function Product() {
                         paddingVertical: 5,
                       }}
                       titleStyle={{ color: "white" }}
+                      ViewComponent={LinearGradient}
+                      linearGradientProps={{
+                        colors: ["#5A5A5A", "#000000"],
+                        start: { x: 0, y: 0.5 },
+                        end: { x: 1, y: 0.5 },
+                      }}
+                      onPress={() => {
+                        navigate("ScreentProduct");
+                      }}
                     >
                       NEW
                     </Button>
