@@ -1,7 +1,13 @@
 import { TabView } from "react-native-elements";
 import { Button, Icon, Tab, Text } from "@rneui/themed";
 import React, { useRef, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  TouchableHighlight,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Product from "../components/Product";
 import { Carousel } from "react-native-snap-carousel";
@@ -28,224 +34,212 @@ const data = [
   },
 ];
 
+const colors = [
+  { color: "#AEB2B5" },
+  { color: "#F1DFD3" },
+  { color: "#DFE1E0" },
+];
+
 export default function ScreentProduct({ navigation }) {
   const { navigate, goBack } = navigation;
 
   const [index, setIndex] = useState(0);
+  const [color, setColor] = useState(0);
+
   const isCarousel = useRef(null);
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.flex1}>
-        <Button buttonStyle={[styles.buttonStyle]} raised>
-          <Icon
-            name="chevron-back-outline"
-            type="ionicon"
-            size={30}
-            style={{
-              paddingHorizontal: 4,
-            }}
-            onPress={() => {
-              goBack();
-            }}
+      <View style={{ marginHorizontal: 15 }}>
+        <View style={styles.flex1}>
+          <Button buttonStyle={[styles.buttonStyle]} raised>
+            <Icon
+              name="chevron-back-outline"
+              type="ionicon"
+              size={30}
+              style={{
+                paddingHorizontal: 4,
+              }}
+              onPress={() => {
+                goBack();
+              }}
+            />
+          </Button>
+          <Button buttonStyle={[styles.buttonStyle]} raised>
+            <Icon
+              name="heart"
+              type="ionicon"
+              size={30}
+              color="#FF5050"
+              style={{
+                paddingHorizontal: 4,
+              }}
+            />
+          </Button>
+        </View>
+
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Carousel
+            layout="default"
+            ref={isCarousel}
+            data={data}
+            renderItem={CarouselCardItem}
+            sliderWidth={SLIDER_WIDTH}
+            itemWidth={400}
+            autoplay={true}
           />
-        </Button>
-        <Button buttonStyle={[styles.buttonStyle]} raised>
-          <Icon
-            name="heart"
-            type="ionicon"
-            size={30}
-            color="#FF5050"
-            style={{
-              paddingHorizontal: 4,
-            }}
-          />
-        </Button>
-      </View>
-
-      <View
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Carousel
-          layout="default"
-          ref={isCarousel}
-          data={data}
-          renderItem={CarouselCardItem}
-          sliderWidth={SLIDER_WIDTH}
-          itemWidth={400}
-          autoplay={true}
-        />
-      </View>
-
-      <View>
-        <Text style={styles.title}>
-          Apple M1 Chip with 8-Core CPU and 8-Core GPU 512GB Storage
-        </Text>
-
-        <Text>Space Gray</Text>
-
-        <View style={styles.flexIconColor}>
-          <View
-            style={{
-              width: 50,
-              height: 50,
-              borderWidth: 1.5,
-              padding: 3,
-              borderRadius: 50,
-              borderColor: "#C4C4C4",
-            }}
-          >
-            <View
-              style={{
-                backgroundColor: "#AEB2B5",
-                borderRadius: 40,
-                width: "100%",
-                height: "100%",
-              }}
-            ></View>
-          </View>
-
-          <View
-            style={{
-              width: 50,
-              height: 50,
-              borderWidth: 1.5,
-              padding: 3,
-              borderRadius: 50,
-              borderColor: "#C4C4C4",
-            }}
-          >
-            <View
-              style={{
-                backgroundColor: "#F1DFD3",
-                borderRadius: 40,
-                width: "100%",
-                height: "100%",
-              }}
-            ></View>
-          </View>
-
-          <View
-            style={{
-              width: 50,
-              height: 50,
-              borderWidth: 1.5,
-              padding: 3,
-              borderRadius: 50,
-              borderColor: "#C4C4C4",
-            }}
-          >
-            <View
-              style={{
-                backgroundColor: "#DFE1E0",
-                borderRadius: 40,
-                width: "100%",
-                height: "100%",
-              }}
-            ></View>
-          </View>
         </View>
 
         <View>
-          <Tab
-            value={index}
-            onChange={setIndex}
-            indicatorStyle={{ width: "25%", backgroundColor: "black" }}
-          >
-            <Tab.Item
-              title="Description"
-              titleStyle={(active: boolean) => {
-                if (active) {
-                  return { color: "black" };
-                } else {
-                  return { color: "#767676" };
-                }
-              }}
-            />
-            <Tab.Item
-              title="Reviews"
-              titleStyle={(active: boolean) => {
-                if (active) {
-                  return { color: "black" };
-                } else {
-                  return { color: "#767676" };
-                }
-              }}
-            />
-          </Tab>
+          <Text style={styles.title}>
+            Apple M1 Chip with 8-Core CPU and 8-Core GPU 512GB Storage
+          </Text>
 
-          <TabView value={index} onChange={setIndex}>
-            <TabView.Item>
-              <View>
-                <Text>
-                  Apple M1 chip with 8‑core CPU, 8‑core GPU, and 16‑core Neural
-                  Engine
-                </Text>
-                <Text>8GB unified memory</Text>
-                <Text>512GB SSD storage¹</Text>
-                <Text>Retina display with True Tone</Text>
-              </View>
-            </TabView.Item>
+          <Text>Space Gray</Text>
 
-            <TabView.Item>
-              <View>
-                <Text>
-                  Apple M1 chip with 8‑core CPU, 8‑core GPU, and 16‑core Neural
-                  Engine
-                </Text>
-                <Text>8GB unified memory</Text>
-                <Text>512GB SSD storage¹</Text>
-                <Text>Retina display with True Tone</Text>
-              </View>
-            </TabView.Item>
-          </TabView>
-        </View>
-
-        <View style={{ marginTop: 30 }}>
-          <Button
-            buttonStyle={{ borderRadius: 20 }}
-            ViewComponent={LinearGradient}
-            linearGradientProps={{
-              colors: ["#5A5A5A", "#000000"],
-              start: { x: 0, y: 0.5 },
-              end: { x: 1, y: 0.5 },
-            }}
-          >
-            <View style={styles.flex}>
-              <View style={styles.flexButton}>
-                <LinearGradient
-                  colors={["#5A5A5A", "#000000"]}
-                  start={{ x: 0, y: 0.5 }}
-                  end={{ x: 1, y: 0.2 }}
-                  style={{
-                    borderRadius: 15,
-                    paddingHorizontal: 0,
+          <View style={styles.flexIconColor}>
+            {colors.map((el, idx) => {
+              return (
+                <TouchableHighlight
+                  underlayColor="white"
+                  onPress={() => {
+                    setColor(idx);
                   }}
                 >
-                  <Icon
-                    onPress={() => {
-                      navigate("ScreenShoppingCart");
-                    }}
-                    name="cart"
-                    type="ionicon"
-                    size={30}
-                    color="white"
+                  <View
+                    key={idx}
                     style={{
-                      paddingHorizontal: 7,
-                      paddingVertical: 7,
+                      width: 50,
+                      height: 50,
+                      borderWidth: 1.5,
+                      padding: 3,
+                      borderRadius: 50,
+                      borderColor: idx == color ? "#2879E2" : "#C4C4C4",
+                      marginLeft: idx % colors.length ? 6 : 0,
                     }}
-                  />
-                </LinearGradient>
+                  >
+                    <View
+                      style={{
+                        backgroundColor: el.color,
+                        borderRadius: 40,
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    ></View>
+                  </View>
+                </TouchableHighlight>
+              );
+            })}
+          </View>
 
-                <Text style={styles.text}>Add to cart</Text>
+          <View>
+            <Tab
+              value={index}
+              onChange={setIndex}
+              indicatorStyle={{ width: "25%", backgroundColor: "black" }}
+            >
+              <Tab.Item
+                title="Description"
+                titleStyle={(active: boolean) => {
+                  if (active) {
+                    return { color: "black" };
+                  } else {
+                    return { color: "#767676" };
+                  }
+                }}
+              />
+              <Tab.Item
+                title="Reviews"
+                titleStyle={(active: boolean) => {
+                  if (active) {
+                    return { color: "black" };
+                  } else {
+                    return { color: "#767676" };
+                  }
+                }}
+              />
+            </Tab>
+
+            <TabView value={index} onChange={setIndex}>
+              <TabView.Item>
+                <View>
+                  <Text>
+                    Apple M1 chip with 8‑core CPU, 8‑core GPU, and 16‑core
+                    Neural Engine
+                  </Text>
+                  <Text>8GB unified memory</Text>
+                  <Text>512GB SSD storage¹</Text>
+                  <Text>Retina display with True Tone</Text>
+                </View>
+              </TabView.Item>
+
+              <TabView.Item>
+                <View>
+                  <Text>
+                    Apple M1 chip with 8‑core CPU, 8‑core GPU, and 16‑core
+                    Neural Engine
+                  </Text>
+                  <Text>8GB unified memory</Text>
+                  <Text>512GB SSD storage¹</Text>
+                  <Text>Retina display with True Tone</Text>
+                </View>
+              </TabView.Item>
+            </TabView>
+          </View>
+
+          <View style={{ marginTop: 30 }}>
+            <Button
+              buttonStyle={{ borderRadius: 20 }}
+              ViewComponent={LinearGradient}
+              linearGradientProps={{
+                colors: ["#5A5A5A", "#000000"],
+                start: { x: 0, y: 0.5 },
+                end: { x: 1, y: 0.5 },
+              }}
+            >
+              <View style={styles.flex}>
+                <TouchableWithoutFeedback
+                  onPress={() => {
+                    navigate("ScreenShoppingCart");
+                  }}
+                >
+                  <View style={styles.flexButton}>
+                    <LinearGradient
+                      colors={["#5A5A5A", "#000000"]}
+                      start={{ x: 0, y: 0.5 }}
+                      end={{ x: 1, y: 0.2 }}
+                      style={{
+                        borderRadius: 15,
+                        paddingHorizontal: 0,
+                      }}
+                    >
+                      <Icon
+                        name="cart"
+                        type="ionicon"
+                        size={30}
+                        color="white"
+                        style={{
+                          paddingHorizontal: 7,
+                          paddingVertical: 7,
+                        }}
+                      />
+                    </LinearGradient>
+
+                    <Text style={[styles.text, { marginLeft: 10 }]}>
+                      Add to cart
+                    </Text>
+                  </View>
+                </TouchableWithoutFeedback>
+
+                <Text style={styles.text}>$1249.00</Text>
               </View>
-
-              <Text style={styles.text}>$1249.00</Text>
-            </View>
-          </Button>
+            </Button>
+          </View>
         </View>
       </View>
     </ScrollView>
@@ -254,7 +248,6 @@ export default function ScreentProduct({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 15,
     backgroundColor: "white",
   },
 

@@ -3,6 +3,8 @@ import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Col, Grid, Row } from "react-native-easy-grid";
 
+const arr = [{ name: "a" }, { name: "b" }, { name: "c" }, { name: "d" }];
+
 export default function ScreenShoppingCart({ navigation }) {
   const { navigate, goBack } = navigation;
 
@@ -51,17 +53,20 @@ export default function ScreenShoppingCart({ navigation }) {
       </View>
 
       <Grid>
-        <Row>
-          <Col size={35}>
-            <Text>1</Text>
-          </Col>
-
-          <Col size={65}>
-            <Text>1</Text>
-          </Col>
-        </Row>
-        <Row></Row>
-        <Row></Row>
+        {arr.map((el, idx) => {
+          console.log("sadasd", idx % arr.length !== 0 ? 5 : 0);
+          return (
+            <Col
+              key={idx}
+              style={{
+                backgroundColor: "gray",
+                marginLeft: idx % arr.length !== 0 ? 5 : 0,
+              }}
+            >
+              <Text>{el.name}</Text>
+            </Col>
+          );
+        })}
       </Grid>
     </ScrollView>
   );
